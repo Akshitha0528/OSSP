@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int global_var = 10;
+static int static_var = 20;
+
+void code_function()
+{
+    printf("This is a code function.\n");
+}
+
+int main()
+{
+    int stack_var = 30;
+    int *heap_var = malloc(sizeof(int));
+
+    *heap_var = 40;
+
+    printf("Process ID: %d\n\n", getpid());
+
+    printf("Address of code     : %p\n", (void *)code_function);
+    printf("Address of global   : %p\n", (void *)&global_var);
+    printf("Address of static   : %p\n", (void *)&static_var);
+    printf("Address of heap     : %p\n", (void *)heap_var);
+    printf("Address of stack    : %p\n", (void *)&stack_var);
+
+    printf("\nProcess is running...\n");
+    printf("Press Ctrl+C to terminate.\n");
+
+    while (1)
+    {
+        sleep(1);
+    }
+
+    free(heap_var);
+    return 0;
+}
