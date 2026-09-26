@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int i;
+
+    int *a = malloc(5 * sizeof(int));
+
+    printf("Memory allocated using malloc()\n");
+
+    for (i = 0; i < 5; i++)
+        a[i] = i + 1;
+
+    int *b = calloc(5, sizeof(int));
+
+    printf("Memory allocated using calloc()\n");
+
+    printf("calloc values: ");
+    for (i = 0; i < 5; i++)
+        printf("%d ", b[i]);
+
+    printf("\n");
+
+    a = realloc(a, 10 * sizeof(int));
+
+    printf("Memory resized using realloc()\n");
+
+    for (i = 5; i < 10; i++)
+        a[i] = i + 1;
+
+    free(a);
+
+    printf("Memory allocated by malloc/realloc freed using free()\n");
+
+    free(b);
+
+    printf("Memory allocated by calloc freed using free()\n");
+
+    return 0;
+}
